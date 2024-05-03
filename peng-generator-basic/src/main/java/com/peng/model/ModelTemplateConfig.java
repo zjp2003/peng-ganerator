@@ -8,10 +8,11 @@ import lombok.Data;
 @Data
 public class ModelTemplateConfig {
 
-    private String author;
-    private String outputText;
+    private String author = "peng";
+
+    private String outputText = "输出：";
     /**
      * 是否循环
      */
-    private boolean loop;
+    private boolean loop = false;
 }

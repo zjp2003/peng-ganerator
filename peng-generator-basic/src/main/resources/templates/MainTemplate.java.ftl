@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 package com.peng.acm;
 
 import java.util.Scanner;
