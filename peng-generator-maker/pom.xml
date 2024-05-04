@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.peng</groupId>
-    <artifactId>peng-generator-basic</artifactId>
+    <artifactId>peng-generator-maker</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -66,7 +66,7 @@
                    </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.peng.Main</mainClass>
+                            <mainClass>com.peng.maker.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
