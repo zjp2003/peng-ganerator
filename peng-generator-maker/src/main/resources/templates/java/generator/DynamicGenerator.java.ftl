@@ -1,4 +1,4 @@
-package com.peng.maker.generator.file;
+package ${basePackage}.generator;
 
 import cn.hutool.core.io.FileUtil;
 import freemarker.template.Configuration;
@@ -13,7 +13,7 @@ import java.io.Writer;
 /**
  * 动态文件生成器
  */
-public class DynamicFileGenerator {
+public class DynamicGenerator {
 
 
     /**

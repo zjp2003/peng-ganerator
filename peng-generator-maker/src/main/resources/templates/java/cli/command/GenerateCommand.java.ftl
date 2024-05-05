@@ -2,7 +2,7 @@ package ${basePackage}.cli.command;
 
 
 import cn.hutool.core.bean.BeanUtil;
-import ${basePackage}.generator.file.FileGenerator;
+import ${basePackage}.generator.MainGenerator;
 import ${basePackage}.model.DataModel;
 import lombok.Data;
 import picocli.CommandLine;
@@ -20,8 +20,8 @@ public class GenerateCommand implements Callable<Integer> {
          * ${modelInfo.description}
          */
         </#if>
-        @CommandLine.Option(names = {<#if modelInfo.addr??>"${modelInfo.addr}",</#if> "--${modelInfo.fileName}"}, <#if modelInfo.description??>description = "${modelInfo.description}"，</#if>arity = "0..1",interactive = true,echo = true)
-        private ${modelInfo.type} ${modelInfo.fileName} <#if modelInfo.defaultValue??>= "${modelInfo.defaultValue?c}"</#if>;
+        @CommandLine.Option(names = {<#if modelInfo.addr??>"-${modelInfo.addr}",</#if> "--${modelInfo.fileName}"}, <#if modelInfo.description??>description = "${modelInfo.description}",</#if>arity = "0..1",interactive = true,echo = true)
+        private ${modelInfo.type} ${modelInfo.fileName} <#if modelInfo.defaultValue??>= ${modelInfo.defaultValue?c}</#if>;
     </#list>
 
     @Override
@@ -31,7 +31,7 @@ public class GenerateCommand implements Callable<Integer> {
         BeanUtil.copyProperties(this, dataModel);
 
         // 调用模板生成
-        FileGenerator.doGenerate(dataModel);
+        MainGenerator.doGenerate(dataModel);
 
         return 0;
     }

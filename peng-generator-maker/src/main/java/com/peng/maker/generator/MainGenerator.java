@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class MainGenerator {
 
-    public static void main(String[] args) throws TemplateException, IOException {
+    public static void main(String[] args) throws TemplateException, IOException, InterruptedException {
         Meta meteObject = MetaManager.getMeteObject();
         System.out.println(meteObject);
 
@@ -68,5 +68,34 @@ public class MainGenerator {
         inputFilePath = inputResourcePath + File.separator + "templates/java/Main.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/Main.java";
         DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
+        // generator/DynamicGenerator
+        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/DynamicGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/DynamicGenerator.java";
+        DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
+        // generator/MainGenerator
+        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
+        DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
+        // generator/StaticGenerator
+        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/StaticGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/StaticGenerator.java";
+        DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
+        // pom.xml
+        inputFilePath = inputResourcePath + File.separator + "templates/pom.xml.ftl";
+        outputFilePath = outputPath+ File.separator + "/pom.xml";
+        DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
+        // 构建 jar 包
+        JarGenerator.doGenerator(outputPath);
+
+        // 封装脚本
+        String shellOutputPath = outputPath + File.separator + "generator";
+        String jarName = String.format("%s-%s-jar-with-dependencies.jar", meteObject.getName(), meteObject.getVersion());
+        String jarPath = "target/"+jarName;
+        ScriptGenerator.doGenerator(shellOutputPath,jarPath);
     }
 }

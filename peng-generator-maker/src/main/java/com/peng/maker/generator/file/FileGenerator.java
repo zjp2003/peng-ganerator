@@ -37,10 +37,9 @@ public class FileGenerator {
         StaticFileGenerator.copyFilesByHutool(inputPath,outputPath);
 
         // 动态文件生成
-        // String dynamicInputPath = projectPath + File.separator + "peng-generator-maker" + File.separator +"src/main/resources/templates/MainTemplate.java.ftl";
+        // String dynamicInputPath = projectPath + File.separator + "peng-generator-basic" + File.separator +"src/main/resources/templates/MainTemplate.java.ftl";
         String dynamicInputPath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
         String dynamicOutputPath = projectPath + File.separator + "acm-template/src/com/peng/acm/MainTemplate.java";
-
 
         DynamicFileGenerator.doGenerate(dynamicInputPath, dynamicOutputPath,model);
     }

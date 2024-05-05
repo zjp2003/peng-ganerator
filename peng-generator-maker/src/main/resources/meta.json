@@ -11,7 +11,7 @@
     "type": "dir",
     "files": [
       {
-        "inputPath": "src/com/peng/acm/MainTemplate.java.flt",
+        "inputPath": "src/com/peng/acm/MainTemplate.java.ftl",
         "outputPath": "src/com/peng/acm/MainTemplate.java",
         "type": "file",
         "generateType": "dynamic"
@@ -37,7 +37,7 @@
         "type": "boolean",
         "description": "是否生成循环",
         "defaultValue": false,
-        "addr": "1"
+        "addr": "l"
       },
       {
         "fileName": "author",

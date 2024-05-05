@@ -1,8 +1,7 @@
 ### Custom template
 .idea
 peng-generator.iml
-generated
-acm-template
+
 ### Java template
 # Compiled class file
 *.class
