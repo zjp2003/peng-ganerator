@@ -1,18 +1,16 @@
 package com.peng.maker;
 
+import com.peng.maker.generator.main.MainGenerator;
+import freemarker.template.TemplateException;
 
-// import com.peng.maker.cli.CommandExecutor;
+import java.io.IOException;
 
 public class Main {
 
 
-    public static void main(String[] args) {
-//        args = new String[]{"generate","-l","-GenerateCommand.java.ftl","-o"};
-//        args = new String[] { "config" };
-//        args = new String[] { "list" };
+    public static void main(String[] args) throws TemplateException, IOException, InterruptedException {
 
-
-//        CommandExecutor commandExecutor = new CommandExecutor();
-//        commandExecutor.doExecutor(args);
+        MainGenerator mainGenerator = new MainGenerator();
+        mainGenerator.doGenerate();
     }
 }

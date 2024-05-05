@@ -39,8 +39,8 @@ public class MetaManager {
         // 读取 json 文件信息
         String metaJson = ResourceUtil.readUtf8Str("meta.json");
         Meta newMeta = JSONUtil.toBean(metaJson, Meta.class);
-        // todo 校验配置文件信息，处理默认值
-
+        // 校验配置文件信息，处理默认值
+        MetaValidator.doValidator(newMeta);
         return newMeta;
     }
 

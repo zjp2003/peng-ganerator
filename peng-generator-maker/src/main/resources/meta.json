@@ -6,8 +6,9 @@
   "author": "peng",
   "createTime": "2023-11-22",
   "fileConfig": {
-    "inputRootPath": "/code/java/project/peng-generator/peng-genertor-demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
+    "sourceRootPath": "/code/java/project/peng-generator/peng-genertor-demo-projects/acm-template-pro",
     "type": "dir",
     "files": [
       {

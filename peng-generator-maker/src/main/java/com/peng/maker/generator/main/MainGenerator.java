@@ -1,8 +1,10 @@
-package com.peng.maker.generator;
+package com.peng.maker.generator.main;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.StrUtil;
+import com.peng.maker.generator.JarGenerator;
+import com.peng.maker.generator.ScriptGenerator;
 import com.peng.maker.generator.file.DynamicFileGenerator;
 import com.peng.maker.meta.Meta;
 import com.peng.maker.meta.MetaManager;
@@ -11,19 +13,28 @@ import freemarker.template.TemplateException;
 import java.io.File;
 import java.io.IOException;
 
-public class MainGenerator {
+public class MainGenerator extends GenerateTemplate{
+
+    @Override
+    protected void buildeDist(String outputPath, String shellOutputPath, String jarPath, String sourceCopyDestPath) {
+        System.out.println("不生成 dist");
+    }
 
     public static void main(String[] args) throws TemplateException, IOException, InterruptedException {
-        Meta meteObject = MetaManager.getMeteObject();
+        /*Meta meteObject = MetaManager.getMeteObject();
         System.out.println(meteObject);
 
         // 输出根路径
         String projectPath = System.getProperty("user.dir");
-        String outputPath = projectPath + File.separator + "generated";
+        String outputPath = projectPath + File.separator + "generated" + File.separator + meteObject.getName();
         // 判断是否存在 不存在则创建
         if (!FileUtil.exist(outputPath)){
             FileUtil.mkdir(outputPath);
         }
+        // 从原始模板文件路径复制到生成的代码中
+        String sourceRootPath = meteObject.getFileConfig().getSourceRootPath();
+        String sourceCopyDestPath = outputPath + File.separator + ".source";
+        FileUtil.copy(sourceRootPath,sourceCopyDestPath,false);
 
         // 读取 resources 目录
         ClassPathResource classPathResource = new ClassPathResource("");
@@ -89,6 +100,11 @@ public class MainGenerator {
         outputFilePath = outputPath+ File.separator + "/pom.xml";
         DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
 
+        // 生成 README.md 项目介绍文件
+        inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
+        outputFilePath = outputPath+ File.separator + "/README.md";
+        DynamicFileGenerator.doGenerate(inputFilePath,outputFilePath,meteObject);
+
         // 构建 jar 包
         JarGenerator.doGenerator(outputPath);
 
@@ -97,5 +113,21 @@ public class MainGenerator {
         String jarName = String.format("%s-%s-jar-with-dependencies.jar", meteObject.getName(), meteObject.getVersion());
         String jarPath = "target/"+jarName;
         ScriptGenerator.doGenerator(shellOutputPath,jarPath);
+
+        // 生成精简版的程序（产物包）
+        String distOutputPath = outputPath + "-dest";
+        // 拷贝 jar 包
+        String targetPath = distOutputPath + File.separator + "target";
+        FileUtil.mkdir(targetPath);
+        String jarAbsolutePath = outputPath + File.separator + jarPath;
+        FileUtil.copy(jarAbsolutePath,targetPath,true);
+        // 拷贝 脚本
+        FileUtil.copy(shellOutputPath,distOutputPath,true);
+        FileUtil.copy(shellOutputPath + ".bat",distOutputPath,true);
+        // 拷贝 原始模板
+        FileUtil.copy(sourceCopyDestPath,distOutputPath,true);*/
+        MainGenerator mainGenerator = new MainGenerator();
+        mainGenerator.doGenerate();
+
     }
 }
